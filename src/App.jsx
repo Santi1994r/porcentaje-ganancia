@@ -1,29 +1,29 @@
-import { useState } from "react";
-import "./App.css";
+import { useEffect, useState } from "react"
+import "./App.css"
 
 function App() {
-  const [porcentaje, setPorcentaje] = useState("");
-  const [monto, setMonto] = useState("");
-  const [total, setTotal] = useState("");
+  const [porcentaje, setPorcentaje] = useState(0)
+  const [monto, setMonto] = useState(0)
+  const [total, setTotal] = useState(0)
+  useEffect(() => {
+    
+  }, [porcentaje, monto])
+  
 
   const calculoDeVenta = (e) => {
-    /* if (e.target.name === 'porcentaje') {
-      setPorcentaje(parseInt(e.target.value));
-    } else if (e.target.name === 'monto') {
-      setMonto(parseFloat(e.target.value));
-    } */
 
     if (
-      
       porcentaje >= 0 &&
       porcentaje <= 1000 &&
-      
-      monto >= 0
+      porcentaje != "" &&
+      monto >= 0 &&
+      porcentaje != 0 &&
+      monto != 0 && monto != ""
     ) {
       const resultado = (monto * porcentaje) / 100;
       return setTotal(resultado.toFixed(2)); // Ajusta la cantidad de decimales según tus necesidades.
     }
-  };
+  }
 
   /*   const calculoDeVenta = (e) => {
     setPorcentaje(e.target.value)
@@ -49,6 +49,7 @@ function App() {
             value={porcentaje}
             type="number"
             className=" h-8 w-24 bg-blue-100 rounded-lg px-3"
+            onChange={(e) => setPorcentaje(e.target.value)}
           />
         </div>
         <div className=" flex items-center justify-center h-2/6">
@@ -60,21 +61,23 @@ function App() {
             value={monto}
             type="number"
             className=" h-8 w-24 bg-blue-100 rounded-lg px-3"
+            onChange={(e) => setMonto(e.target.value)}
           />
         </div>
-        {total ? (
+        {total ? 
           (<div className=" flex items-center justify-center h-1/6">
             <p className=" font-bold text-red-500 text-3xl">
               <span className=" text-red-800">Valor de venta: </span>${total}
             </p>
           </div>)
-          (porcentaje === "" || monto === "")(
-            <div className=" flex items-center justify-center h-1/6">
-              <p className=" font-bold text-red-500 text-3xl">
-                Tienes que poner los datos para poder calcular
-              </p>
-            </div>
-          )) 
+          : (porcentaje === 0 && monto === 0) 
+            ? (
+                <div className=" flex items-center justify-center h-1/6">
+                <p className=" font-bold text-red-500 text-3xl">
+                    Tienes que poner ambos datos para poder calcular
+                  </p>
+                </div>
+              )
           : (
           <div className=" flex items-center justify-center h-1/6">
             <p className=" font-bold text-red-500 text-3xl">
@@ -97,3 +100,10 @@ function App() {
 }
 
 export default App;
+
+
+    /* if (e.target.name === 'porcentaje') {
+      setPorcentaje(parseInt(e.target.value));
+    } else if (e.target.name === 'monto') {
+      setMonto(parseFloat(e.target.value));
+    } */

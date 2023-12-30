@@ -21,7 +21,8 @@ function App() {
       monto != 0 && monto != ""
     ) {
       const resultado = ((monto * porcentaje) / 100) + monto
-      return setTotal(resultado); // Ajusta la cantidad de decimales según tus necesidades.
+      setMonto(0)
+      setTotal(resultado); // Ajusta la cantidad de decimales según tus necesidades.
     }
   }
 

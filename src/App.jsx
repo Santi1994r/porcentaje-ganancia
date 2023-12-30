@@ -20,8 +20,8 @@ function App() {
       porcentaje != 0 &&
       monto != 0 && monto != ""
     ) {
-      const resultado = (monto * porcentaje) / 100;
-      return setTotal(resultado.toFixed(2)); // Ajusta la cantidad de decimales según tus necesidades.
+      const resultado = ((monto * porcentaje) / 100) + monto
+      return setTotal(resultado); // Ajusta la cantidad de decimales según tus necesidades.
     }
   }
 
@@ -49,7 +49,7 @@ function App() {
             value={porcentaje}
             type="number"
             className=" h-8 w-24 bg-blue-100 rounded-lg px-3"
-            onChange={(e) => setPorcentaje(e.target.value)}
+            onChange={(e) => setPorcentaje(Number(e.target.value))}
           />
         </div>
         <div className=" flex items-center justify-center h-2/6">
@@ -61,7 +61,7 @@ function App() {
             value={monto}
             type="number"
             className=" h-8 w-24 bg-blue-100 rounded-lg px-3"
-            onChange={(e) => setMonto(e.target.value)}
+            onChange={(e) => setMonto(Number(e.target.value))}
           />
         </div>
         {total ? 

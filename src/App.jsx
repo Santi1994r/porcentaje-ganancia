@@ -73,7 +73,7 @@ function App() {
           : (porcentaje === 0 && monto === 0) 
             ? (
                 <div className=" flex items-center justify-center h-1/6">
-                <p className=" font-bold text-red-500 text-3xl">
+                <p className=" font-bold text-red-500 text-3xl text-center">
                     Tienes que poner ambos datos para poder calcular
                   </p>
                 </div>
